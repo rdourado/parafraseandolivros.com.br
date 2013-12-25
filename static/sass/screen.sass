@@ -1,0 +1,351 @@
+@import "config"
+@import "mixins"
+
+// Fonts
+
+@import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic)
+
+// Tags
+
+*
+	margin: 0
+	padding: 0
+body
+	background: $greenLtr
+	color: $black
+	font-family: sans-serif
+hr
+	display: none
+ul,ol
+	list-style: none
+a
+	text-decoration: none
+	&:hover, &:focus, &:active
+		text-decoration: underline
+
+// Layout
+
+.head
+	background: url(../img/wood.jpg) repeat-x center 0
+	height: 270px
+	position: relative
+.main
+	display: table
+	margin: 0 auto
+	width: 950px
+.body
+	display: table-cell
+	// float: left
+	padding: 0 10px 40px 0
+	vertical-align: top
+	width: 710px
+.extra
+	background: #fff
+	display: table-cell
+	// float: right
+	vertical-align: top
+	width: 230px
+.foot
+	background: $gray
+	clear: both
+	min-height: 90px
+	padding: 30px 0 20px
+	position: relative
+
+// Header
+
+.logo
+	left: 50%
+	margin-left: -475px
+	position: absolute
+	top: 0
+	z-index: 10
+.nav
+	left: 50%
+	margin-left: -245px
+	position: absolute
+	top: 35px
+	width: 720px
+.menu
+	display: table
+	width: 100%
+	.menu-item
+		display: table-cell
+		a
+			background: $green
+			color: $greenLtr
+			display: block
+			font: 700 13px/30px $font
+			padding: 10px 15px 0
+			text-align: center
+			text-transform: uppercase
+			&:hover, &:focus, &:active
+				background: $greenDk
+				text-decoration: none
+
+// Footer
+
+.foot-menu
+	color: $grayLtr
+	left: 50%
+	position: absolute
+	text-align: right
+	top: 36px
+	width: 475px
+	.menu-item
+		display: inline
+		font: 300 11px $font
+		text-transform: lowercase
+		a
+			color: $grayLtr
+		&:before
+			content: " | "
+		&:first-child:before
+			display: none
+
+.foot-social
+	bottom: 20px
+	margin-right: -475px
+	position: absolute
+	right: 50%
+	.social-item
+		float: left
+		margin-left: 10px
+		a, img
+			display: block
+		a
+			background: $grayLt
+			overflow: hidden
+			@include border-radius(5px)
+			&:hover, &:focus, &:active
+				background: $black
+
+.site-name
+	display: block
+	margin: 0 auto 13px
+	width: 950px
+	img
+		display: block
+.copyright
+	color: $greenLtr
+	font: 300 11px/17px $font
+	margin: 0 auto
+	width: 950px
+	a
+		color: #fff
+
+// Body
+
+.post
+	background: #fff
+	margin-bottom: 60px
+	padding: 0 0 20px
+	position: relative
+	@include box-shadow(0 1px 3px rgba(#000,.25))
+	&:before,
+	&:after
+		content: ""
+		display: block
+		position: absolute
+	&:before
+		background: #fff
+		bottom: -1px
+		height: 2px
+		left: 0
+		width: 710px
+		z-index: 2
+	&:after
+		background: url(../img/papercut.svg)
+		@include background-size(722px 43px)
+		bottom: -43px
+		height: 43px
+		left: -6px
+		width: 722px
+		@include drop-shadow(0 1px 3px rgba(#000,.25))
+		z-index: 1
+.post-title
+	display: table
+	font: 700 20px/30px $font
+	height: 75px
+	text-transform: uppercase
+	width: 100%
+	a
+		color: $greenDk
+		display: table-cell
+		padding: 0 40px 0 70px
+		vertical-align: middle
+.post-meta
+	background: $gray
+	font-family: $font
+	font-size: 12px
+	line-height: 30px
+	overflow: hidden
+	text-transform: lowercase
+	a
+		color: $ice
+	li
+		float: left
+		margin-right: 20px
+	.post-meta-comments
+		float: right
+		margin-right: 10px
+.post-date
+	color: $ice
+	font-size: 13px
+	margin-left: 10px
+	text-transform: uppercase
+.post-content
+	font: 14px/20px $font
+	padding: 20px 40px
+	p
+		margin-bottom: 10px
+	blockquote
+		border-left: 5px solid $red
+		color: $gray
+		font-style: italic
+		margin: 0 0 10px -10px
+		padding: 30px 0 20px 45px
+		position: relative
+		&:before
+			background: $red url(../img/quote.svg) no-repeat 15px 13px
+			@include background-size(30px 30px)
+			color: #fff
+			content: ""
+			display: block
+			height: 60px
+			left: -25px
+			margin-top: -30px
+			position: absolute
+			text-align: center
+			top: 50%
+			width: 60px
+			@include border-radius(50%)
+	.hr
+		background: url(../img/hr.svg) no-repeat center center
+		@include background-size(660px 20px)
+		clear: both
+		height: 20px
+		margin: 20px -40px 20px -40px
+		hr
+			display: none
+	.more-link
+		border-top: 3px solid $green
+		clear: both
+		display: block
+		margin: 0 -40px 0 -40px
+		span
+			background: $green
+			color: #fff
+			float: right
+			font: 18px/30px $font
+			margin-top: -3px
+			padding: 0 30px
+			text-decoration: inherit
+			text-transform: uppercase
+
+// Single
+
+.post-author
+	background: $greenLt
+	font: 11px/17px $font
+	margin-bottom: 30px
+	min-height: 100px
+	padding: 10px 40px 10px 130px
+	position: relative
+	.avatar
+		display: block
+		left: 0
+		position: absolute
+		top: 0
+.author-name
+	font-size: 14px
+	margin-bottom: 10px
+	text-transform: uppercase
+
+.related
+	margin-bottom: 20px
+	@include clearfix
+.related-heading
+	font: 700 14px $font
+	margin-bottom: 10px
+	text-transform: uppercase
+.related-item
+	float: left
+	margin-left: 10px
+	width: 110px
+	&:first-child
+		margin-left: 0
+	a
+		color: $black
+.related-title
+	font: 12px $font
+
+// Widgets
+
+.widget
+	clear: both
+	@include clearfix
+	a
+		color: $black
+.widget-title
+	border-bottom: 2px solid $red
+	color: $greenDk
+	font: 300 16px/20px $font
+	padding: 10px 10px 0
+	text-transform: uppercase
+
+.textwidget
+	font: 12px/17px $font
+	padding: 7px 10px 0
+	p
+		margin-bottom: 7px
+
+.tagcloud
+	font-family: $font
+	font-weight: 300
+	padding: 7px 10px
+	a
+		&:hover, &:focus, &:active 
+			color: $red
+			text-decoration: underline
+
+.widget_categories
+	font: 12px/2 $font
+	li
+		position: relative
+	a
+		background: $greenLt
+		border-bottom: 1px solid $green
+		color: $black
+		display: block
+		padding: 0 5px 0 40px
+		&:hover, &:focus, &:active 
+			background: $red
+			border-color: $redDk
+			color: #fff
+			+ span
+				border-color: $redDk
+				color: #fff
+	span
+		border-right: 1px solid $green
+		display: block
+		left: 0
+		position: absolute
+		text-align: center
+		top: 0
+		width: 30px
+
+.recentcomments,
+.widget_recent_entries li
+	border-bottom: 1px solid $green
+	font: 10px/12px $font
+	min-height: 25px
+	padding: 2px 5px 2px 40px
+	&:hover
+		background: $red
+		border-color: $redDk
+		color: #fff
+		a
+			color: #fff
+	a:hover, a:focus, a:active
+		text-decoration: underline
