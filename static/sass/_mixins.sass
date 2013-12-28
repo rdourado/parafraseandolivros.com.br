@@ -20,6 +20,11 @@
 	-webkit-box-shadow: $value
 	box-shadow: $value
 
+@mixin box-sizing($value: border-box)
+	-webkit-box-sizing: $value
+	-moz-box-sizing: $value
+	box-sizing: $value
+
 @mixin drop-shadow($value)
 	-webkit-filter: drop-shadow($value)
 	filter: drop-shadow($value)

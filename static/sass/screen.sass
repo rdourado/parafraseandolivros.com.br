@@ -32,6 +32,7 @@ a
 .main
 	display: table
 	margin: 0 auto
+	position: relative
 	width: 950px
 .body
 	display: table-cell
@@ -141,6 +142,7 @@ a
 	margin-bottom: 60px
 	padding: 0 0 20px
 	position: relative
+	top: -85px
 	@include box-shadow(0 1px 3px rgba(#000,.25))
 	&:before,
 	&:after
@@ -149,8 +151,8 @@ a
 		position: absolute
 	&:before
 		background: #fff
-		bottom: -1px
-		height: 2px
+		bottom: -2px
+		height: 4px
 		left: 0
 		width: 710px
 		z-index: 2
@@ -174,11 +176,32 @@ a
 		display: table-cell
 		padding: 0 40px 0 70px
 		vertical-align: middle
+	&:before
+		background-color: $red
+		content: ""
+		display: block
+		height: 75px
+		left: -10px
+		position: absolute
+		top: 0
+		width: 70px
+	&:after
+		border-style: solid
+		border-width: 0 10px 8px 0
+		border-color: transparent $red transparent transparent
+		content: ""
+		display: block
+		height: 0
+		left: -10px
+		position: absolute
+		top: 75px
+		width: 0
 .post-meta
 	background: $gray
 	font-family: $font
 	font-size: 12px
 	line-height: 30px
+	min-height: 30px
 	overflow: hidden
 	text-transform: lowercase
 	a
@@ -197,8 +220,47 @@ a
 .post-content
 	font: 14px/20px $font
 	padding: 20px 40px
+	h2, h3, h4, h5
+		border-bottom: 2px solid $red
+		color: $green
+		font: 700 18px/1 $font
+		margin: 20px 0 15px -20px
+		padding: 0 0 5px 20px
+		position: relative
+		text-transform: uppercase
+		&:before
+			border-color: $red $red transparent $red
+			border-style: solid
+			border-width: 26px 8px 6px 8px
+			content: ""
+			display: block
+			left: 0
+			position: absolute
+			top: 0
+		&:after
+			color: #fff
+			content: "\2605"
+			display: block
+			font-size: 12px
+			left: 0
+			position: absolute
+			text-align: center
+			top: 3px
+			width: 16px
 	p
 		margin-bottom: 10px
+	ul
+		li
+			margin-left: 15px
+			position: relative
+			&:before
+				color: $red
+				content: "\2605"
+				display: block
+				font-size: 12px
+				left: -15px
+				position: absolute
+				top: 0
 	blockquote
 		border-left: 5px solid $red
 		color: $gray
@@ -220,19 +282,21 @@ a
 			top: 50%
 			width: 60px
 			@include border-radius(50%)
+	a
+		color: $red
 	.hr
 		background: url(../img/hr.svg) no-repeat center center
 		@include background-size(660px 20px)
 		clear: both
 		height: 20px
-		margin: 20px -40px 20px -40px
+		margin: 30px -40px 30px -40px
 		hr
 			display: none
 	.more-link
 		border-top: 3px solid $green
 		clear: both
 		display: block
-		margin: 0 -40px 0 -40px
+		margin: 0 -40px 10px -40px
 		span
 			background: $green
 			color: #fff
@@ -242,13 +306,82 @@ a
 			padding: 0 30px
 			text-decoration: inherit
 			text-transform: uppercase
+	.books 
+		margin: 10px -40px 20px -40px
+		width: 710px
+		img, .book-summary
+			display: block
+			left: 0
+			position: absolute
+			top: 0
+		li
+			float: left
+			margin-left: 10px
+			padding-top: 345px
+			width: 230px
+			&:nth-child(3n+1)
+				clear: both
+				margin-left: 0
+			&:before
+				display: none
+		.book-summary
+			height: 325px
+			padding: 10px
+.book-meta
+	border-top: 1px solid $green
+	display: table
+	font-size: 12px
+	line-height: 16px
+	text-transform: lowercase
+	width: 100%
+.book-term,
+.book-info
+	display: table-cell
+	height: 32px
+	padding: 4px 8px
+	vertical-align: middle
+.book-term
+	background: $greenLt
+	font-weight: 700
+	position: relative
+	text-align: center
+	width: 20%
+	&:after
+		border-color: transparent transparent transparent $greenLt
+		border-style: solid
+		border-width: 20px 0 20px 5px
+		content: ""
+		display: block
+		margin-top: -20px
+		position: absolute
+		right: -5px
+		top: 50%
+.book-info
+	padding-left: 16px
+
+.alignleft
+	float: left
+	margin-right: 10px
+.alignright
+	float: right
+	margin-left: 10px
+.aligncenter
+	display: block
+	margin-left: auto
+	margin-right: auto
+
+.size-large
+	height: auto
+	margin-left: -40px
+	margin-right: -40px
+	width: 710px
 
 // Single
 
 .post-author
 	background: $greenLt
 	font: 11px/17px $font
-	margin-bottom: 30px
+	margin: -85px 0 30px
 	min-height: 100px
 	padding: 10px 40px 10px 130px
 	position: relative
@@ -264,7 +397,6 @@ a
 
 .related
 	margin-bottom: 20px
-	@include clearfix
 .related-heading
 	font: 700 14px $font
 	margin-bottom: 10px
@@ -280,11 +412,139 @@ a
 .related-title
 	font: 12px $font
 
+.nav-links
+	$border: 15px
+	display: table
+	margin: 0 $border 30px $border
+	a
+		background: $red
+		color: #fff
+		display: table-cell
+		font: 700 12px $font
+		height: 44px
+		padding: 0 $border
+		position: relative
+		text-align: right
+		vertical-align: middle
+		width: 50%
+		@include box-sizing
+		&:before
+			border-bottom: 22px solid transparent
+			border-left: $border solid $red
+			border-top: 22px solid transparent
+			content: ''
+			display: block
+			right: -$border
+			position: absolute
+			top: 0
+		&:first-child
+			background: $black
+			text-align: left
+			&:before
+				border-left: 0 none
+				border-right: $border solid $black
+				left: -$border
+				right: auto
+
+// Comments
+
+.comments-title,
+.comment-reply-title
+	font: 700 16px/24px $font
+	margin-bottom: 10px
+	text-transform: uppercase
+.comment-list,
+.comment-respond
+	margin-bottom: 30px
+.children
+	margin-left: 40px
+.comment-body
+	margin: 0 0 10px 80px
+	min-height: 80px
+	position: relative
+	.avatar
+		display: block
+		left: -80px
+		position: absolute
+		top: 0
+.comment-meta,
+.comment-content
+	background: #fff
+	padding: 10px 15px 0
+.comment-author
+	display: inline
+	font: 14px $font
+	margin-right: 3px
+	text-transform: uppercase
+	.says 
+		display: none
+	a
+		color: $red
+.comment-metadata
+	display: inline
+	font: italic 11px $font
+	text-transform: uppercase
+	a
+		color: $gray
+.edit-link:before
+	content: " | "
+.comment-content
+	font: 14px/20px $font
+	min-height: 42px
+	p,ol,ul
+		padding-bottom: 14px
+.reply
+	border-top: 3px solid $green
+@mixin button
+	color: #fff
+	font: 12px/24px $font
+	margin-top: -3px
+	padding: 0 15px
+	text-transform: uppercase
+.comment-reply-link
+	background: $green
+	float: left
+	@include button
+
+@mixin field
+	background: #fff
+	border: 1px solid #fff
+	font: 12px $font
+	padding: 4px 6px
+	width: 100%
+	@include border-radius(5px)
+	@include box-sizing
+.comment-form
+	label, .comment-notes, .form-allowed-tags
+		display: none
+.comment-form-author, .comment-form-email, .comment-form-url
+	float: left
+	margin: 0 0 10px 10px
+	width: 230px
+	input
+		@include field
+.comment-form-author
+	margin-left: 0
+.comment-form-comment 
+	margin-bottom: 10px
+	textarea
+		height: 80px
+		@include field
+.form-submit
+	border-top: 3px solid $red
+	input
+		background: $red
+		border: 0 none
+		cursor: pointer
+		float: right
+		@include button
+		&:hover, &:focus
+			text-decoration: underline
+
 // Widgets
 
 .widget
 	clear: both
-	@include clearfix
 	a
 		color: $black
 .widget-title
@@ -349,3 +609,14 @@ a
 			color: #fff
 	a:hover, a:focus, a:active
 		text-decoration: underline
+
+// Small Fixes
+
+.more-link, 
+.books, 
+.related, 
+.nav-links, 
+.comment-body, 
+.form-submit, 
+.widget 
+	@include clearfix
