@@ -341,6 +341,17 @@ a
 				text-align: right
 				top: 0
 				width: 32px
+	.book-heading
+		background: $green
+		border: 0 none
+		color: #fff
+		font: 700 16px/30px $font
+		margin: 0
+		padding: 0
+		text-transform: uppercase
+		&:before,
+		&:after
+			display: none
 	.summary-title
 		border: 0 none
 		color: $red
@@ -370,6 +381,7 @@ a
 	width: 660px
 	hr
 		display: none
+
 .more-link
 	border-top: 3px solid $green
 	clear: both
@@ -385,6 +397,7 @@ a
 		padding: 0 30px
 		text-decoration: inherit
 		text-transform: uppercase
+
 .books 
 	margin: 10px -40px 20px -40px
 	width: 710px
@@ -447,6 +460,115 @@ a
 		top: 50%
 .book-info
 	padding-left: 13px
+.book-social
+	font-size: 0
+	text-align: center
+	padding-top: 15px
+	position: relative
+	.social-item 
+		display: inline-block
+		float: none
+		margin-left: 1px
+		a
+			height: 50px
+			width: 50px
+			&:before
+				font-size: 30px
+				line-height: 50px
+
+.book-review
+	margin-bottom: 10px
+	margin-top: -30px
+	position: relative
+.book-aside
+	left: -50px
+	position: absolute
+	top: 0
+	width: 50px
+	.social-item 
+		margin: 0
+		a
+			border-top: 1px solid $black
+			height: 50px
+			width: 50px
+			@include border-radius(0)
+			&:before
+				font-size: 28px
+				line-height: 50px
+.book-rating
+	color: #fff
+	display: block
+	font: 700 25px/50px $font
+	text-align: center
+	width: 50px
+.book-cover
+	float: left
+	width: 200px
+	.book-heading
+		padding-left: 10px
+	img
+		display: block
+		height: 300px
+		width: 100%
+.book-data,
+.book-grade
+	margin-left: 200px
+	.book-heading
+		border-left: 40px solid $green
+		margin-bottom: -1px
+	.book-meta
+		margin-left: 40px
+		width: 470px
+	.book-term,
+	.book-info
+		height: 20px
+	.book-info
+		font-size: 13px
+	.book-term:after
+		border-width: 14px 0 14px 5px
+		margin-top: -14px
+.book-grade .book-meta
+	margin-left: 160px
+	width: 350px
+.book-total
+	background: $greenLt
+	float: left
+	font: 34px/57px $font
+	margin: 1px 0 0 40px
+	position: relative
+	text-align: center
+	width: 110px
+.book-stars,
+.book-total:before
+	display: block
+	height: 20px
+	left: 0
+	position: absolute
+	top: 68px
+.book-total:before
+	background: $ice
+	content: ""
+	width: 110px
+	z-index: 1
+.book-stars
+	background: #000
+	z-index: 2
+	&:before
+		background: url(../img/sprites.png) 0 -296px
+		content: ""
+		display: block
+		height: 24px
+		left: -2px
+		position: absolute
+		top: -2px
+		width: 114px
+$colors: #a6a51f, #2cacd2, #f89f16, #eb5a00, #d92c2c, $black
+$ratings: l, 10, 12, 14, 16, 18
+@for $i from 1 through length($ratings)
+	.rating-#{nth($ratings,$i)}
+		.book-rating,
+		.book-stars
+			background: nth($colors,$i)
 
 .alignleft
 	float: left
@@ -459,6 +581,7 @@ a
 	margin-left: auto
 	margin-right: auto
 
+.book-review,
 .size-large
 	height: auto
 	margin-left: -40px
@@ -827,7 +950,8 @@ a
 .widget,
 .related,
 .more-link,
-.comment-body,
+.book-review,
+.comment-body
 	@include clearfix
 
 // Retina
@@ -846,6 +970,7 @@ a
 	.widget_recent_entries li:before,
 	.recentcomments:before,
 	.recentcomments:after,
+	.book-stars:before,
 	.foot:before
 		background-image: url(../img/sprites@2x.png)
 		@include background-size

@@ -39,6 +39,47 @@
 						%li.post-meta-comments< 
 							%a{:href => "#"} 5 comentários
 					.post-content.e-content 
+						.book-review.rating-12
+							.book-aside
+								%em.book-rating 12
+								.social-item 
+									%a{:href => "#", :target => "_blank", :title => "Goodreads", :data => {:icon => "r"}} Goodreads
+								.social-item 
+									%a{:href => "#", :target => "_blank", :title => "Skoob", :data => {:icon => "k"}} Skoob
+							.book-cover
+								%h2.book-heading Capa
+								%img{:src => "http://dummyimage.com/400x600", :alt => "", :width => "200", :height => "300"}/ 
+							.book-data
+								%h2.book-heading Informações Técnicas
+								%dl.book-meta
+									%dt.book-term Título
+									%dd.book-info a maldição do tigre
+								%dl.book-meta
+									%dt.book-term Série
+									%dd.book-info a saga do tigre
+								%dl.book-meta
+									%dt.book-term Autor
+									%dd.book-info colleen houck
+								%dl.book-meta
+									%dt.book-term Editora
+									%dd.book-info fantasy - casa da palavra
+								%dl.book-meta
+									%dt.book-term Páginas
+									%dd.book-info 374
+								%dl.book-meta
+									%dt.book-term Publicado em
+									%dd.book-info 2011
+							.book-grade
+								%h2.book-heading Avaliação
+								%strong.book-total< 
+									3.75
+									%span.book-stars{:style => "width:70%"} 
+								%dl.book-meta
+									%dt.book-term Design
+									%dd.book-info 5.0
+								%dl.book-meta
+									%dt.book-term Resenha
+									%dd.book-info 2.75
 						%p< 
 							&= "Vamos que vamos Pessoas, atualizando a já interminável lista de livros para a Bienal. Não sei vocês, mas a minha já tem muita coisa, no estilo “não vou poder comprar livro até a próxima Bienal”, entendem?! >.< Estou tentando priorizar os livros que continuam as séries que tenho em aberto, mas com tantas novidades aparecendo isso se torna EXTREMAMENTE DIFÍCIL!"
 						%p Mas deixando o mimimi de lado, vamos a enorme lista de lançamentos de julho (antes que julho acabe)! \o/
@@ -61,6 +102,14 @@
 									%dl.book-meta 
 										%dt.book-term Autor
 										%dd.book-info Tracey Garvis Graves
+									.book-social 
+										.social-item 
+											%a{:href => "#", :target => "_blank", :title => "Skoob", :data => {:icon => "k"}} Skoob
+										.social-item 
+											%a{:href => "#", :target => "_blank", :title => "Goodreads", :data => {:icon => "r"}} Goodreads
+						.hr 
+							%hr/ 
+
 				%article.post.h-entry{:role => "article"} 
 					%h1.post-title.p-name 
 						%a.u-url{:href => "#"} Promoção: 3 anos de parafraseando livros, mais um livro! 3 anos de parafraseando livros, mais um livro!
