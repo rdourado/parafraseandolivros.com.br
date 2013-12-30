@@ -5,6 +5,13 @@
 
 @import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic)
 
+@font-face 
+	font-family: 'social'
+	src: url('../fonts/social.eot')
+	src: url('../fonts/social.eot?#iefix') format('embedded-opentype'), url('../fonts/social.ttf') format('truetype'), url('../fonts/social.woff') format('woff'), url('../fonts/social.svg#social') format('svg')
+	font-weight: normal
+	font-style: normal
+
 // Tags
 
 *
@@ -13,20 +20,49 @@
 body
 	background: $greenLtr
 	color: $black
-	font-family: sans-serif
+	font: 14px/20px sans-serif
 hr
 	display: none
+p
+	font-family: $font
+	margin-bottom: 10px
 ul,ol
+	font: 14px/17px $font
 	list-style: none
+	margin-bottom: 10px
+li
+	margin-left: 15px
+	position: relative
+blockquote
+	border-left: 5px solid $red
+	color: $gray
+	font-style: italic
+	margin: 0 0 10px -10px
+	padding: 30px 0 20px 45px
+	position: relative
+	&:before
+		background: $red url(../img/sprites.png) -680px -1px
+		border: 10px solid $red
+		content: ""
+		display: block
+		height: 40px
+		left: -25px
+		margin-top: -30px
+		position: absolute
+		top: 50%
+		width: 40px
+		@include border-radius(50%)
 a
-	text-decoration: none
+	color: $red
+	@include transition
 	&:hover, &:focus, &:active
-		text-decoration: underline
+		color: $green
 
 // Layout
 
 .head
 	background: url(../img/wood.jpg) repeat-x center 0
+	@include background-size(1280px 270px)
 	height: 270px
 	position: relative
 .main
@@ -36,14 +72,12 @@ a
 	width: 950px
 .body
 	display: table-cell
-	// float: left
 	padding: 0 10px 40px 0
 	vertical-align: top
 	width: 710px
 .extra
 	background: #fff
 	display: table-cell
-	// float: right
 	vertical-align: top
 	width: 230px
 .foot
@@ -52,6 +86,12 @@ a
 	min-height: 90px
 	padding: 30px 0 20px
 	position: relative
+	&:before
+		background: url(../img/sprites.png) repeat-x 0 -280px
+		content: ""
+		display: block
+		height: 9px
+		margin: -39px 0 30px
 
 // Header
 
@@ -60,6 +100,7 @@ a
 	margin-left: -475px
 	position: absolute
 	top: 0
+	width: 230px
 	z-index: 10
 .nav
 	left: 50%
@@ -72,17 +113,17 @@ a
 	width: 100%
 	.menu-item
 		display: table-cell
+		font: 700 13px/30px $font
 		a
 			background: $green
 			color: $greenLtr
 			display: block
-			font: 700 13px/30px $font
 			padding: 10px 15px 0
 			text-align: center
+			text-decoration: none
 			text-transform: uppercase
 			&:hover, &:focus, &:active
 				background: $greenDk
-				text-decoration: none
 
 // Footer
 
@@ -96,9 +137,13 @@ a
 	.menu-item
 		display: inline
 		font: 300 11px $font
+		margin: 0
 		text-transform: lowercase
 		a
 			color: $grayLtr
+			text-decoration: none
+			&:hover, &:focus, &:active
+				color: $green
 		&:before
 			content: " | "
 		&:first-child:before
@@ -109,17 +154,31 @@ a
 	margin-right: -475px
 	position: absolute
 	right: 50%
-	.social-item
-		float: left
-		margin-left: 10px
-		a, img
+	white-space: nowrap
+.social-item
+	float: left
+	margin-left: 10px
+	a
+		background: $grayLt
+		display: block
+		height: 30px
+		overflow: hidden
+		position: relative
+		text-indent: 100%
+		white-space: nowrap
+		width: 30px
+		@include border-radius(5px)
+		&:hover, &:focus, &:active
+			background: $green
+		&:before
+			color: #fff
+			content: attr(data-icon)
 			display: block
-		a
-			background: $grayLt
-			overflow: hidden
-			@include border-radius(5px)
-			&:hover, &:focus, &:active
-				background: $black
+			font: 20px/30px $icon
+			position: absolute
+			text-indent: 0
+			text-align: center
+			width: 100%
 
 .site-name
 	display: block
@@ -133,7 +192,10 @@ a
 	margin: 0 auto
 	width: 950px
 	a
-		color: #fff
+		color: $greenLtr
+		text-decoration: none
+		&:hover, &:focus, &:active
+			color: $green
 
 // Body
 
@@ -143,28 +205,16 @@ a
 	padding: 0 0 20px
 	position: relative
 	top: -85px
-	@include box-shadow(0 1px 3px rgba(#000,.25))
-	&:before,
+	@include box-shadow(0 1px 5px rgba(#000,.25))
 	&:after
+		background: url(../img/sprites.png) 0 -240px
+		bottom: -39px
 		content: ""
 		display: block
+		height: 40px
+		left: -7px
 		position: absolute
-	&:before
-		background: #fff
-		bottom: -2px
-		height: 4px
-		left: 0
-		width: 710px
-		z-index: 2
-	&:after
-		background: url(../img/papercut.svg)
-		@include background-size(722px 43px)
-		bottom: -43px
-		height: 43px
-		left: -6px
 		width: 722px
-		@include drop-shadow(0 1px 3px rgba(#000,.25))
-		z-index: 1
 .post-title
 	display: table
 	font: 700 20px/30px $font
@@ -174,10 +224,14 @@ a
 	a
 		color: $greenDk
 		display: table-cell
-		padding: 0 40px 0 70px
+		height: 61px
+		padding: 7px 40px 7px 70px
+		text-decoration: none
 		vertical-align: middle
+		&:hover, &:focus, &:active
+			color: $redDk
 	&:before
-		background-color: $red
+		background: $red url(../img/sprites.png) -5px 0
 		content: ""
 		display: block
 		height: 75px
@@ -198,38 +252,46 @@ a
 		width: 0
 .post-meta
 	background: $gray
-	font-family: $font
-	font-size: 12px
-	line-height: 30px
+	font: 12px/30px $font
 	min-height: 30px
 	overflow: hidden
+	padding: 0 10px
 	text-transform: lowercase
 	a
 		color: $ice
+		text-decoration: none
+		&:hover, &:focus, &:active
+			color: $green
 	li
 		float: left
-		margin-right: 20px
+		margin: 0 20px 0 0
+	.post-meta-category:before,
+	.post-meta-comments:before
+		background: url(../img/sprites.png) -648px -85px
+		content: ""
+		float: left
+		height: 30px
+		width: 28px
 	.post-meta-comments
 		float: right
-		margin-right: 10px
+		margin-right: 0
+		&:before
+			background-position: -648px -45px
 .post-date
 	color: $ice
 	font-size: 13px
-	margin-left: 10px
 	text-transform: uppercase
 .post-content
-	font: 14px/20px $font
 	padding: 20px 40px
-	h2, h3, h4, h5
-		border-bottom: 2px solid $red
-		color: $green
+	h2,h3,h4
+		border-bottom-style: solid
+		border-bottom-width: 2px
 		font: 700 18px/1 $font
-		margin: 20px 0 15px -20px
+		margin: 20px 0 10px -20px
 		padding: 0 0 5px 20px
 		position: relative
 		text-transform: uppercase
 		&:before
-			border-color: $red $red transparent $red
 			border-style: solid
 			border-width: 26px 8px 6px 8px
 			content: ""
@@ -247,86 +309,113 @@ a
 			text-align: center
 			top: 3px
 			width: 16px
-	p
-		margin-bottom: 10px
-	ul
+	h2
+		border-color: $red
+		color: $green
+		&:before
+			border-color: $red $red transparent $red
+	h3,h4
+		border-color: $green
+		color: $red
+		&:before
+			border-color: $green $green transparent $green
+	ul li:before
+		color: $red
+		content: "\2605"
+		display: block
+		font-size: 12px
+		left: -15px
+		position: absolute
+		top: 0
+	ol
+		counter-reset: count
 		li
-			margin-left: 15px
-			position: relative
+			counter-increment: count
 			&:before
 				color: $red
-				content: "\2605"
+				content: counter(count)"."
 				display: block
-				font-size: 12px
-				left: -15px
+				font-weight: bold
+				left: -35px
 				position: absolute
+				text-align: right
 				top: 0
-	blockquote
-		border-left: 5px solid $red
-		color: $gray
-		font-style: italic
-		margin: 0 0 10px -10px
-		padding: 30px 0 20px 45px
-		position: relative
-		&:before
-			background: $red url(../img/quote.svg) no-repeat 15px 13px
-			@include background-size(30px 30px)
-			color: #fff
+				width: 32px
+	.summary-title
+		border: 0 none
+		color: $red
+		font: 700 20px/34px $font
+		margin: 0 0 5px
+		padding: 0 0 0 42px
+		&:after 
+			display: none
+		&:before 
+			background: $red url(../img/sprites.png) -380px 0
+			@include background-size(409px 179px)
+			border: 5px solid $red
 			content: ""
 			display: block
-			height: 60px
-			left: -25px
-			margin-top: -30px
-			position: absolute
-			text-align: center
-			top: 50%
-			width: 60px
-			@include border-radius(50%)
-	a
-		color: $red
-	.hr
-		background: url(../img/hr.svg) no-repeat center center
-		@include background-size(660px 20px)
-		clear: both
-		height: 20px
-		margin: 30px -40px 30px -40px
-		hr
-			display: none
-	.more-link
-		border-top: 3px solid $green
-		clear: both
-		display: block
-		margin: 0 -40px 10px -40px
-		span
-			background: $green
-			color: #fff
-			float: right
-			font: 18px/30px $font
-			margin-top: -3px
-			padding: 0 30px
-			text-decoration: inherit
-			text-transform: uppercase
-	.books 
-		margin: 10px -40px 20px -40px
-		width: 710px
-		img, .book-summary
-			display: block
+			height: 24px
 			left: 0
+			margin-top: -17px
 			position: absolute
-			top: 0
-		li
-			float: left
-			margin-left: 10px
-			padding-top: 345px
-			width: 230px
-			&:nth-child(3n+1)
-				clear: both
-				margin-left: 0
-			&:before
-				display: none
-		.book-summary
-			height: 325px
-			padding: 10px
+			top: 50%
+			width: 24px
+			@include border-radius(50%)
+.hr
+	background: url(../img/sprites.png) -30px -169px
+	clear: both
+	height: 22px
+	margin: 20px -15px
+	width: 660px
+	hr
+		display: none
+.more-link
+	border-top: 3px solid $green
+	clear: both
+	display: block
+	margin: 0 -40px 10px -40px
+	text-decoration: none
+	span
+		background: $green
+		color: #fff
+		float: right
+		font: 700 18px/30px $font
+		margin-top: -3px
+		padding: 0 30px
+		text-decoration: inherit
+		text-transform: uppercase
+.books 
+	margin: 10px -40px 20px -40px
+	width: 710px
+	img, .book-summary
+		display: block
+		left: 0
+		position: absolute
+		top: 0
+	img
+		height: 345px
+		width: 230px
+	li
+		float: left
+		margin-left: 10px
+		padding-top: 345px
+		width: 230px
+		&:nth-child(3n+1)
+			clear: both
+			margin-left: 0
+		&:before
+			display: none !important
+		&:hover .book-summary
+			visibility: visible
+	.book-summary
+		background: rgba(#000,.7)
+		color: #fff
+		font: 13px/20px $font
+		height: 325px
+		overflow: hidden
+		padding: 10px
+		visibility: hidden
 .book-meta
 	border-top: 1px solid $green
 	display: table
@@ -357,7 +446,7 @@ a
 		right: -5px
 		top: 50%
 .book-info
-	padding-left: 16px
+	padding-left: 13px
 
 .alignleft
 	float: left
@@ -409,6 +498,9 @@ a
 		margin-left: 0
 	a
 		color: $black
+		text-decoration: none
+		&:hover, &:focus, &:active
+			color: $redDk
 .related-title
 	font: 12px $font
 
@@ -416,15 +508,16 @@ a
 	$border: 15px
 	display: table
 	margin: 0 $border 30px $border
+	position: relative
 	a
 		background: $red
 		color: #fff
 		display: table-cell
 		font: 700 12px $font
-		height: 44px
-		padding: 0 $border
-		position: relative
+		height: 30px
+		padding: 7px $border
 		text-align: right
+		text-decoration: none
 		vertical-align: middle
 		width: 50%
 		@include box-sizing
@@ -434,7 +527,7 @@ a
 			border-top: 22px solid transparent
 			content: ''
 			display: block
-			right: -$border
+			right: -$border + 1
 			position: absolute
 			top: 0
 		&:first-child
@@ -443,7 +536,7 @@ a
 			&:before
 				border-left: 0 none
 				border-right: $border solid $black
-				left: -$border
+				left: -$border + 1
 				right: auto
 
 // Comments
@@ -471,6 +564,8 @@ a
 .comment-content
 	background: #fff
 	padding: 10px 15px 0
+.comment-meta a
+	text-decoration: none
 .comment-author
 	display: inline
 	font: 14px $font
@@ -478,33 +573,38 @@ a
 	text-transform: uppercase
 	.says 
 		display: none
-	a
-		color: $red
 .comment-metadata
 	display: inline
 	font: italic 11px $font
 	text-transform: uppercase
 	a
 		color: $gray
+		&:hover, &:focus, &:active
+			color: $green
 .edit-link:before
 	content: " | "
 .comment-content
-	font: 14px/20px $font
 	min-height: 42px
+	p
+		line-height: 20px
 	p,ol,ul
-		padding-bottom: 14px
+		margin-bottom: 0
+		padding-bottom: 10px
 .reply
 	border-top: 3px solid $green
 @mixin button
 	color: #fff
 	font: 12px/24px $font
-	margin-top: -3px
+	margin: -3px 0 0
 	padding: 0 15px
 	text-transform: uppercase
 .comment-reply-link
 	background: $green
-	float: left
+	display: inline-block
+	text-decoration: none
 	@include button
+	&:hover, &:focus, &:active
+		color: #fff
 
 @mixin field
 	background: #fff
@@ -515,9 +615,13 @@ a
 	@include border-radius(5px)
 	@include box-sizing
 .comment-form
-	label, .comment-notes, .form-allowed-tags
+	label,
+	.comment-notes,
+	.form-allowed-tags
 		display: none
-.comment-form-author, .comment-form-email, .comment-form-url
+.comment-form-author,
+.comment-form-email,
+.comment-form-url
 	float: left
 	margin: 0 0 10px 10px
 	width: 230px
@@ -532,27 +636,74 @@ a
 		@include field
 .form-submit
 	border-top: 3px solid $red
+	text-align: right
 	input
 		background: $red
 		border: 0 none
 		cursor: pointer
-		float: right
+		display: inline-block
 		@include button
-		&:hover, &:focus
-			text-decoration: underline
 
 // Widgets
 
 .widget
 	clear: both
-	a
-		color: $black
 .widget-title
 	border-bottom: 2px solid $red
 	color: $greenDk
 	font: 300 16px/20px $font
 	padding: 10px 10px 0
 	text-transform: uppercase
+
+.widget_search
+	margin: -85px 0 0
+#s
+	border: 0 none
+	font: italic 12px/1.5 $font
+	margin: 0
+	padding: 5px
+	text-align: center
+	width: 100%
+	@include appearance(textfield)
+	@include box-sizing
+.s-submit
+	display: none
+
+.social
+	position: relative
+	.social-item
+		&:first-child
+			margin-left: 0
+		a
+			height: 38px
+			width: 38px
+			&:hover, &:focus, &:active
+				background: $redDk
+			&:before
+				font-size: 26px
+				line-height: 38px
+	.social-skoob,
+	.social-goodreads
+		position: absolute
+		right: 0
+		top: -84px
+	.social-skoob
+		right: 48px
+.social-facebook a
+	background: rgb(93,130,209)
+.social-twitter a
+	background: rgb(64,191,245)
+.social-instagram a
+	background: rgb(84,139,182)
+.social-pinterest a
+	background: rgb(237,48,52)
+.social-gplus a
+	background: rgb(230,60,60)
+.social-rss a
+	background: rgb(250,163,61)
+.social-skoob a,
+.social-goodreads a
+	background: $green
 
 .textwidget
 	font: 12px/17px $font
@@ -561,17 +712,20 @@ a
 		margin-bottom: 7px
 
 .tagcloud
-	font-family: $font
-	font-weight: 300
+	font: 300 13px $font
 	padding: 7px 10px
 	a
-		&:hover, &:focus, &:active 
+		color: $black
+		text-decoration: none
+		&:hover, &:focus, &:active
 			color: $red
 			text-decoration: underline
 
 .widget_categories
-	font: 12px/2 $font
+	ul
+		font: 12px/2 $font
 	li
+		margin: 0
 		position: relative
 	a
 		background: $greenLt
@@ -579,6 +733,7 @@ a
 		color: $black
 		display: block
 		padding: 0 5px 0 40px
+		text-decoration: none
 		&:hover, &:focus, &:active 
 			background: $red
 			border-color: $redDk
@@ -594,29 +749,103 @@ a
 		text-align: center
 		top: 0
 		width: 30px
+		@include transition
 
-.recentcomments,
-.widget_recent_entries li
+.widget_recent_entries
+	ul
+		font: 10px/12px $font
+	li
+		margin: 0
+		position: relative
+		&:before
+			background: url(../img/sprites.png) -645px -7px
+			content: ""
+			display: block
+			height: 27px
+			left: 2px
+			position: absolute
+			top: 1px
+			width: 30px
+	a
+		border-bottom: 1px solid $green
+		color: $black
+		display: block
+		margin: 0
+		min-height: 25px
+		padding: 2px 5px 2px 40px
+		text-decoration: none
+		&:hover, &:focus, &:active
+			background: $red
+			border-color: $redDk
+			color: #fff
+
+.recentcomments
 	border-bottom: 1px solid $green
 	font: 10px/12px $font
+	margin: 0
 	min-height: 25px
 	padding: 2px 5px 2px 40px
+	position: relative
+	@include transition(color)
+	&:before,
+	&:after
+		background-image: url(../img/sprites.png)
+		content: ""
+		display: block
+		height: 20px
+		left: 4px
+		position: absolute
+		top: 5px
+		width: 26px
+		@include transition(opacity)
+	&:before
+		background-position: -687px -90px
+		z-index: 2
+	&:after
+		background-position: -687px -50px
+		opacity: 0
+		z-index: 1
 	&:hover
 		background: $red
 		border-color: $redDk
 		color: #fff
 		a
 			color: #fff
-	a:hover, a:focus, a:active
-		text-decoration: underline
+		&:before
+			opacity: 0
+		&:after
+			opacity: 1
+	a
+		color: $black
+		text-decoration: none
+		&:hover, &:focus, &:active
+			text-decoration: underline
 
 // Small Fixes
 
-.more-link, 
-.books, 
-.related, 
-.nav-links, 
-.comment-body, 
-.form-submit, 
-.widget 
+.books,
+.widget,
+.related,
+.more-link,
+.comment-body,
 	@include clearfix
+
+// Retina
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)
+	.head
+		background-image: url(../img/wood@2x.jpg)
+	.post-content .summary-title:before
+		background-image: url(../img/sprites@2x.png)
+	.hr,
+	.post:after,
+	blockquote:before,
+	.post-title:before,
+	.post-meta .post-meta-category:before,
+	.post-meta .post-meta-comments:before,
+	.widget_recent_entries li:before,
+	.recentcomments:before,
+	.recentcomments:after,
+	.foot:before
+		background-image: url(../img/sprites@2x.png)
+		@include background-size
