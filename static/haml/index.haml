@@ -107,7 +107,7 @@
 											%a{:href => "#", :target => "_blank", :title => "Skoob", :data => {:icon => "k"}} Skoob
 										.social-item 
 											%a{:href => "#", :target => "_blank", :title => "Goodreads", :data => {:icon => "r"}} Goodreads
-						.hr 
+						.hr< 
 							%hr/ 
 
 				%article.post.h-entry{:role => "article"} 
@@ -134,7 +134,7 @@
 						%p Esta é minha primeira experiência com a editora Arqueiro e fiquei bastante satisfeita com o resultado final do livro. O miolo é bonito, com uma mancha bem agradável de leitura. O texto respira bem nas margens e nas entrelinhas. Senti falta do cabeçalho com a informação autor/nome do livro.
 						%p Achei as páginas de abertura de capítulos elegantes, mas à primeira vista a fonte utilizada nos títulos não me pareceu “hindu”, me remeteu mais às letras árabes. Os arabescos florais também me deixaram um pouco em dúvida se tinham a ver com a arte indiana, porque eram um tanto quanto diferentes da moldura da capa.
 						%p Gostei da experiência de ter um “aperitivo” do próximo livro nas páginas finais, mas confesso que não li porque não queria spoilers.
-						.hr 
+						.hr< 
 							%hr/ 
 						%h2 Resenha
 						%p Sabem… acho que ao final de A Maldição do Tigre eu cheguei a duas suposições: ou eu estou velha e não está mais dando para ler romances de “adolescentes”, ou Colleen Houck pegou extremamente pesado em todos os clichês possíveis de relacionamentos de livros YAs…
@@ -145,7 +145,7 @@
 							que me incomodou no livro foi quando Kelsey é “chamada para sua aventura”. “Vamos comigo para Índia levar o tigre branco para reserva?” "Claro, já é!”… O.O Oi?! Cadê a dúvida, a ansiedade, a sensação de incapacidade? Onde foi parar a negação?! Quando Kelsey não negou o chamado para aventura ficou faltando um elemento de tensão que de alguma forma culminaria em ela mudar sua decisão e ir para Índia de qualquer jeito.
 						%p Quer um exemplo? Ela se nega a ir, a pessoa dá um cartão de visitas para que ela entre em contato caso mude de ideia. De noite, ela tem um pesadelo com o tigre sendo massacrado por caçadores e deixando a entender que a culpa era dela, por não ter ido junto. Ela acorda com a “necessidade” de fazer a viagem e proteger o tigre que é tão importante para ela. Faz bastante diferença, faz com que ela internalize ainda mais a ligação com este animal em especial.
 						%p Bem, okei, ela vai pra Índia. Aí jogam a bomba na cabeça dela: príncipe lindo-gostoso-über-maravilhoso, maldição, só ela que pode salvá-lo. Vocês acham que a Kelsey surta, entra em pânico, pede penico e quer voltar para casa, que é a coisa que qualquer pessoa normal sentiria?! Não! Super Kelsey acha tudo maneiro e super normal, vamos lá salvar o dia!…
-						.hr 
+						.hr< 
 							%hr/ 
 						%p Até a próxima! o/
 				%article.post.h-entry{:role => "article"} 
@@ -181,12 +181,12 @@
 						%h2 Blogs
 						%ol 
 							- 5.times do |ntime|
-								%li 
-									%b 
+								%li< 
+									%b< 
 										Brincando com Livros [
 										%a{:href => "#"} visite
 										]
-						.hr 
+						.hr< 
 							%hr/ 
 				%section.post-author 
 					%img.avatar{:src => "http://dummyimage.com/240x240", :alt => "", :width => "120", :height => "120"}/ 
@@ -287,7 +287,7 @@
 				%aside.widget.widget_search 
 					%form.search-form{:action => "/", :method => "get", :role => "search"} 
 						%p 
-							%input#s{:type => "search", :name => "s", :placeholder => "digite sua busca e pressione enter", :aria => {:required => true, :label => "digite sua busca e pressione enter"}}/ 
+							%input#s{:type => "search", :name => "s", :required => true, :placeholder => "digite sua busca e pressione enter", :aria => {:required => "true", :label => "digite sua busca e pressione enter"}}/ 
 							%button.s-submit{:type => "submit"} Ok
 					%ul.social 
 						%li.social-item.social-facebook< 
@@ -365,15 +365,15 @@
 				%aside.widget.widget_recent_entries 
 					%h3.widget-title Novo no PL
 					%ul 
-						%li 
+						%li< 
 							%a{:href => "#"} [resenha] Pela Luz dos Olhos Seus – Janine Boissard
-						%li 
+						%li< 
 							%a{:href => "#"} tá de graça na amazon #19
-						%li 
+						%li< 
 							%a{:href => "#"} lançamentos novembro: iD
-						%li 
+						%li< 
 							%a{:href => "#"} [resenha] De repente, é ele – Susan Fox
-						%li 
+						%li< 
 							%a{:href => "#"} novas aquisições do blog #34
 				%aside.widget.widget_recent_comments 
 					%h3.widget-title Últimos comentários

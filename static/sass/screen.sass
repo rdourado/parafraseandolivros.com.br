@@ -108,6 +108,8 @@ a
 	position: absolute
 	top: 35px
 	width: 720px
+	.admin-bar &
+		margin-top: 32px
 .menu
 	display: table
 	width: 100%
@@ -199,7 +201,7 @@ a
 
 // Body
 
-.post
+.entry
 	background: #fff
 	margin-bottom: 60px
 	padding: 0 0 20px
@@ -239,6 +241,16 @@ a
 		position: absolute
 		top: 0
 		width: 70px
+		.page &
+			background-color: $green
+		.page-contato &
+			background-position: -405px -3px
+		.page-about &,
+		.page-sobre &,
+		.page-sobre-o-blog-e-a-autora &,
+			background-position: -405px -82px
+		.page-lista-de-resenhas &
+			background-position: -480px -82px
 	&:after
 		border-style: solid
 		border-width: 0 10px 8px 0
@@ -250,6 +262,8 @@ a
 		position: absolute
 		top: 75px
 		width: 0
+		.page &
+			border-color: transparent $green transparent transparent
 .post-meta
 	background: $gray
 	font: 12px/30px $font
@@ -277,7 +291,7 @@ a
 		margin-right: 0
 		&:before
 			background-position: -648px -45px
-.post-date
+.post-meta-date
 	color: $ice
 	font-size: 13px
 	text-transform: uppercase
@@ -386,7 +400,7 @@ a
 	border-top: 3px solid $green
 	clear: both
 	display: block
-	margin: 0 -40px 10px -40px
+	margin: 10px -40px 10px -40px
 	text-decoration: none
 	span
 		background: $green
@@ -962,7 +976,7 @@ $ratings: l, 10, 12, 14, 16, 18
 	.post-content .summary-title:before
 		background-image: url(../img/sprites@2x.png)
 	.hr,
-	.post:after,
+	.entry:after,
 	blockquote:before,
 	.post-title:before,
 	.post-meta .post-meta-category:before,
