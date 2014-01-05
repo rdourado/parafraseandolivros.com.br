@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title><?php wp_title() ?></title>
 	<link href="<?php url() ?>/css/screen.css" rel="stylesheet">
+	<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"></script><![endif]-->
 	<?php wp_head() ?>
 </head>
 <body <?php body_class( (is_page() ? 'page-' : 'post-') . $post->post_name ) ?>>

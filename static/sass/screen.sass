@@ -23,10 +23,18 @@ body
 	font: 14px/20px sans-serif
 hr
 	display: none
+img, fieldset
+	border: 0 none
+fieldset
+	margin: 20px 0 0
+	padding: 20px 0 0
+legend
+	font: 700 16px $font
+	text-transform: uppercase
 p
 	font-family: $font
 	margin-bottom: 10px
-ul,ol
+ul, ol
 	font: 14px/17px $font
 	list-style: none
 	margin-bottom: 10px
@@ -91,7 +99,7 @@ a
 		content: ""
 		display: block
 		height: 9px
-		margin: -39px 0 30px
+		margin: -39px 0 20px
 
 // Header
 
@@ -126,6 +134,8 @@ a
 			text-transform: uppercase
 			&:hover, &:focus, &:active
 				background: $greenDk
+	.current-menu-item a
+		background: $greenDk
 
 // Footer
 
@@ -134,7 +144,7 @@ a
 	left: 50%
 	position: absolute
 	text-align: right
-	top: 36px
+	top: 26px
 	width: 475px
 	.menu-item
 		display: inline
@@ -297,9 +307,10 @@ a
 	text-transform: uppercase
 .post-content
 	padding: 20px 40px
-	h2,h3,h4
+	h2, h3, h4
 		border-bottom-style: solid
 		border-bottom-width: 2px
+		clear: both
 		font: 700 18px/1 $font
 		margin: 20px 0 10px -20px
 		padding: 0 0 5px 20px
@@ -333,6 +344,8 @@ a
 		color: $red
 		&:before
 			border-color: $green $green transparent $green
+	ul, ol
+		@include clearfix
 	ul li:before
 		color: $red
 		content: "\2605"
@@ -388,11 +401,14 @@ a
 			width: 24px
 			@include border-radius(50%)
 .hr
-	background: url(../img/sprites.png) -30px -169px
+	background: url(../img/sprites.png) -30px -209px
 	clear: both
 	height: 22px
 	margin: 20px -15px
 	width: 660px
+	.tag-resenha &,
+	.category-resenha &
+		background-position: -30px -169px
 	hr
 		display: none
 
@@ -584,6 +600,33 @@ $ratings: l, 10, 12, 14, 16, 18
 		.book-stars
 			background: nth($colors,$i)
 
+.wp-pagenavi
+	font-size: 0
+	margin: -80px 0 0
+	text-align: center
+	a,span
+		color: #fff
+		display: inline-block
+		font: 11px/25px $font
+		min-width: 21px
+		padding: 0 2px
+	.previouspostslink,.nextpostslink
+		color: $red
+		font-size: 13px
+	a
+		background: $gray
+		text-decoration: none
+		&:hover, &:focus, &:active
+			background: $red
+			color: #fff
+	span
+		background: $black
+		cursor: default
+	.pages,.first,.last
+		display: none
+
+// Common Classes
+
 .alignleft
 	float: left
 	margin-right: 10px
@@ -601,6 +644,23 @@ $ratings: l, 10, 12, 14, 16, 18
 	margin-left: -40px
 	margin-right: -40px
 	width: 710px
+
+@for $i from 3 through 6
+	$width: 710px
+	.post-content .cols-#{$i}
+		margin-left: -40px
+		margin-right: -40px
+		width: $width
+		> li, > div
+			float: left
+			margin-bottom: 10px
+			margin-left: 10px
+			width: ($width - (10px * ($i - 1))) / $i
+			&:nth-child(#{$i}n+1)
+				clear: both
+				margin-left: 0
+		> li:before
+			display: none
 
 // Single
 
@@ -646,12 +706,13 @@ $ratings: l, 10, 12, 14, 16, 18
 	display: table
 	margin: 0 $border 30px $border
 	position: relative
+	width: 710px - $border * 2
 	a
 		background: $red
 		color: #fff
 		display: table-cell
 		font: 700 12px $font
-		height: 30px
+		height: 44px
 		padding: 7px $border
 		text-align: right
 		text-decoration: none
@@ -664,7 +725,7 @@ $ratings: l, 10, 12, 14, 16, 18
 			border-top: 22px solid transparent
 			content: ''
 			display: block
-			right: -$border + 1
+			right: -$border
 			position: absolute
 			top: 0
 		&:first-child
@@ -673,7 +734,7 @@ $ratings: l, 10, 12, 14, 16, 18
 			&:before
 				border-left: 0 none
 				border-right: $border solid $black
-				left: -$border + 1
+				left: -$border
 				right: auto
 
 // Comments
@@ -682,10 +743,26 @@ $ratings: l, 10, 12, 14, 16, 18
 .comment-reply-title
 	font: 700 16px/24px $font
 	margin-bottom: 10px
+	position: relative
 	text-transform: uppercase
+.comments-title
+	padding-left: 40px
+	&:before
+		background: url(../img/sprites.png) -684px -128px
+		content: ""
+		display: block
+		height: 25px
+		left: 0
+		margin: -11px 0 0
+		position: absolute
+		top: 50%
+		width: 32px
 .comment-list,
 .comment-respond
 	margin-bottom: 30px
+.comment-list
+	.odd,.even
+		margin-left: 0
 .children
 	margin-left: 40px
 .comment-body
@@ -730,7 +807,9 @@ $ratings: l, 10, 12, 14, 16, 18
 .reply
 	border-top: 3px solid $green
 @mixin button
+	border: 0 none
 	color: #fff
+	cursor: pointer
 	font: 12px/24px $font
 	margin: -3px 0 0
 	padding: 0 15px
@@ -780,6 +859,39 @@ $ratings: l, 10, 12, 14, 16, 18
 		cursor: pointer
 		display: inline-block
 		@include button
+
+// Contact Form
+
+.text,
+.area
+	background: $greenLtr
+	border: 0 none
+	font: 12px/1.5 $font
+	padding: 6px 8px
+	width: 100%
+	@include border-radius(5px)
+	@include box-sizing
+
+.field
+	label, br
+		display: none
+.field-name
+	float: left
+	width: 49.4%
+.field-email
+	float: right
+	width: 49.4%
+.field-submit
+	border-top: 3px solid $red
+	text-align: right
+.submit
+	background: $red
+	display: inline-block
+	@include button
+
+.ajax-loader
+	float: left
+	margin: 4px
 
 // Widgets
 
@@ -982,6 +1094,7 @@ $ratings: l, 10, 12, 14, 16, 18
 	.post-meta .post-meta-category:before,
 	.post-meta .post-meta-comments:before,
 	.widget_recent_entries li:before,
+	.comments-title:before,
 	.recentcomments:before,
 	.recentcomments:after,
 	.book-stars:before,
