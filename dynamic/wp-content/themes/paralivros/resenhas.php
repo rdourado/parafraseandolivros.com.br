@@ -22,7 +22,7 @@ Template name: Lista de Resenhas
 <?php 					endforeach; ?>
 					</ul>
 <?php 				foreach ( $posts as $letter => $data ) : ?>
-					<h2 id="<?php echo $letter; ?>"><?php echo $letter; ?></h2>
+					<h3 id="<?php echo $letter; ?>"><?php echo $letter; ?></h3>
 					<ul>
 <?php 					usort( $data, make_comparer( 'clean' ) );
 						foreach ( $data as $row ) : ?>

@@ -70,18 +70,18 @@ function my_list_categories( $html ) {
 function organize_posts( $loop ) {
 	while ( $loop->have_posts() ) : $loop->the_post();
 		global $post;
-		$title = html_entity_decode( get_the_title() );
+		$title = html_entity_decode( trim( get_the_title() ) );
 		// Remove “resenha”
 		$title = preg_replace( '/^\[?[Rr]esenha.*?[\]:-]\s/', '', $title );
 		// Coloca artigo do título por último
 		$title = preg_replace( '/^((a|A|à|À|em|Em|o|O|um|Um|un|Un|ao|Ao|uma|Uma)s?)\s(.*?)\s–/', '$3, $1 –', $title );
-		$title = htmlentities( $title );
+		$title = ucfirst( $title );
 		// Salva versão limpa do título
 		$clean = remove_accents( $title );
+		$title = htmlentities( $title );
 		// Transforma textos entre ‘–’ em itálico
-		$title = preg_replace( '/^(.*?)(&ndash;)/', '<b>$1</b> &ndash;', $title );
+		$title = preg_replace( '/^(.*?(?=(&ndash;|$)))/', '<b>$1</b>', $title );
 		$title = preg_replace( '/(&ndash;)\s(.*?)\s(&ndash;)/', '&ndash; <i>$2</i> &ndash;', $title );
-		$title = ucfirst( $title );
 		$first = preg_match( '/^[^a-zA-Z]?([a-zA-Z]).*?\s/', $clean, $first ) ? strtoupper( end( $first ) ) : '?';
 		$arr = array( 'title' => $title, 'clean' => $clean, 'post' => $post );
 		isset($posts[$first]) ? ($posts[$first][] = $arr) : ($posts[$first] = array($arr));
