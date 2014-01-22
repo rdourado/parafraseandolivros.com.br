@@ -24,7 +24,8 @@ Template name: Lista de Resenhas
 <?php 				foreach ( $posts as $letter => $data ) : ?>
 					<h3 id="<?php echo $letter; ?>"><?php echo $letter; ?></h3>
 					<ul>
-<?php 					usort( $data, make_comparer( 'clean' ) );
+<?php 					// usort( $data, make_comparer( 'clean' ) );
+						$data = sort2d_bycolumn( $data, 'clean', SORT_ASC, false );
 						foreach ( $data as $row ) : ?>
 						<li><?php echo $row['title'] ?> [<a href="<?php echo get_permalink( $row['post'] ); ?>">link</a>]</li>
 <?php 					endforeach; ?>

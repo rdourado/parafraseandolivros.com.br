@@ -5,7 +5,7 @@
 	<title><?php wp_title() ?></title>
 	<link href="<?php url() ?>/css/screen.css" rel="stylesheet">
 	<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"></script><![endif]-->
-	<?php wp_head() ?>
+	<!-- WP/ --><?php wp_head() ?><!-- /WP -->
 </head>
 <body <?php body_class( (is_page() ? 'page-' : 'post-') . $post->post_name ) ?>>
 	<header class="head" role="banner">
@@ -20,7 +20,9 @@
 	wp_nav_menu( array(
 		'container' => 'nav',
 		'container_class' => 'nav',
-		'menu_class' => 'menu'
+		'menu_class' => 'menu',
+		'depth' => 1,
+		'fallback_cb' => false,
 	) );
 	?>
 

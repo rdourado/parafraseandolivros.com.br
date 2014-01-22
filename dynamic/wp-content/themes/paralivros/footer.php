@@ -2,13 +2,14 @@
 	</div>
 	<hr>
 	<footer class="foot">
-		<ul class="foot-menu">
-			<li class="menu-item"><a href="#">Amigos do blog</a></li>
-			<li class="menu-item"><a href="#">Contato</a></li>
-			<li class="menu-item"><a href="#">Lista de resenhas</a></li>
-			<li class="menu-item"><a href="#">Políticas do blog</a></li>
-			<li class="menu-item"><a href="#">Sobre o blog e a autora</a></li>
-		</ul>
+		<?php 
+		wp_nav_menu( array(
+			'container' => '',
+			'menu_class' => 'foot-menu',
+			'depth' => 1,
+			'fallback_cb' => false,
+		) );
+		?>
 		<ul class="foot-social">
 			<li class="social-item"><a data-icon="f" href="#" target="_blank" title="Facebook">Facebook</a></li>
 			<li class="social-item"><a data-icon="t" href="#" target="_blank" title="Twitter">Twitter</a></li>
@@ -32,6 +33,6 @@
 			<a href="http://rafaeldourado.com.br/" target="_blank">www.rafaeldourado.com.br</a>
 		</p>
 	</footer>
-	<?php wp_footer() ?>
+	<!-- WP/ --><?php wp_footer() ?><!-- /WP -->
 </body>
 </html>

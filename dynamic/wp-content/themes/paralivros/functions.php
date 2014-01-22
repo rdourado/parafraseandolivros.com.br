@@ -24,7 +24,7 @@ function my_setup() {
 
 	// add_theme_support( 'post-thumbnails' );
 	// set_post_thumbnail_size( 672, 372, true );
-	// add_image_size( 'twentyfourteen-full-width', 1038, 576, true );
+	add_image_size( 'cover', 200, 300, true );
 
 	register_nav_menus( array(
 		'primary'   => 'Cabeçalho',
@@ -91,7 +91,36 @@ function organize_posts( $loop ) {
 	return $posts;
 }
 
-function make_comparer() {
+function sort2d_bycolumn( $array, $column, $method, $has_header ) {
+	if ( $has_header ) 
+		$header = array_shift( $array );
+	foreach ( $array as $key => $row ) 
+		$narray[$key] = $row[$column]; 
+	array_multisort( $narray, $method, $array );
+	if ( $has_header )
+		array_unshift( $array, $header );
+	return $array;
+}
+
+function my_grade( $grades ) {
+	$grades = array_filter( $grades );
+	$final_grade = 0;
+	foreach( $grades as $grade ) 
+		$final_grade += $grade;
+	$final_grade /= count( $grades );
+	echo $final_grade;
+}
+
+function my_grade_pct( $grades ) {
+	$grades = array_filter( $grades );
+	$final_grade = 0;
+	foreach( $grades as $grade ) 
+		$final_grade += $grade;
+	$final_grade /= count( $grades );
+	echo (100 * $final_grade / 5) . '%';
+}
+
+/*function make_comparer() {
     // Normalize criteria up front so that the comparer finds everything tidy
     $criteria = func_get_args();
     foreach ($criteria as $index => $criterion) {
@@ -127,4 +156,4 @@ function make_comparer() {
 
         return 0; // tiebreakers exhausted, so $first == $second
     };
-}
+}*/
