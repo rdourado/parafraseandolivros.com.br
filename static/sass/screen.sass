@@ -3,7 +3,7 @@
 
 // Fonts
 
-@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic)
+@import url("http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic")
 
 @font-face 
 	font-family: 'social'
@@ -20,7 +20,7 @@
 body
 	background: $greenLtr
 	color: $black
-	font: 14px/20px sans-serif
+	font: 16px/24px sans-serif
 hr
 	display: none
 img, fieldset
@@ -33,19 +33,19 @@ legend
 	text-transform: uppercase
 p
 	font-family: $font
-	margin-bottom: 10px
+	margin-bottom: 15px
 ul, ol
-	font: 14px/17px $font
+	font: 16px/24px $font
 	list-style: none
-	margin-bottom: 10px
+	margin-bottom: 15px
 li
-	margin-left: 15px
+	margin-bottom: 5px
 	position: relative
 blockquote
 	border-left: 5px solid $red
 	color: $gray
 	font-style: italic
-	margin: 0 0 10px -10px
+	margin: 0 0 15px -10px
 	padding: 30px 0 20px 45px
 	position: relative
 	&:before
@@ -59,10 +59,10 @@ blockquote
 		position: absolute
 		top: 50%
 		width: 40px
-		@include border-radius(50%)
+		+border-radius(50%)
 a
 	color: $red
-	@include transition
+	+transition
 	&:hover, &:focus, &:active
 		color: $green
 
@@ -70,7 +70,7 @@ a
 
 .head
 	background: url(../img/wood.jpg) repeat-x center 0
-	@include background-size(1280px 270px)
+	+background-size(1280px 270px)
 	height: 270px
 	position: relative
 .main
@@ -179,7 +179,7 @@ a
 		text-indent: 100%
 		white-space: nowrap
 		width: 30px
-		@include border-radius(5px)
+		+border-radius(5px)
 		&:hover, &:focus, &:active
 			background: $green
 		&:before
@@ -217,7 +217,7 @@ a
 	padding: 0 0 20px
 	position: relative
 	top: -85px
-	@include box-shadow(0 1px 5px rgba(#000,.25))
+	+box-shadow(0 1px 5px rgba(#000,.25))
 	&:after
 		background: url(../img/sprites.png) 0 -240px
 		bottom: -39px
@@ -261,6 +261,22 @@ a
 			background-position: -405px -82px
 		.page-lista-de-resenhas &
 			background-position: -480px -82px
+		.category-bate-papo &
+			background-position: -325px 0
+		.category-de-graca &
+			background-position: -165px 0
+		.category-eventos &
+			background-position: -85px 0
+		.category-lancamentos &
+			background-position: -5px -80px
+		.category-meme &
+			background-position: -245px -80px
+		.category-noticias &
+			background-position: -245px 0
+		.category-promocao &
+			background-position: -325px -80px
+		.category-resenha &
+			background-position: -485px 0
 	&:after
 		border-style: solid
 		border-width: 0 10px 8px 0
@@ -312,7 +328,7 @@ a
 		border-bottom-width: 2px
 		clear: both
 		font: 700 18px/1 $font
-		margin: 20px 0 10px -20px
+		margin: 30px 0 15px -20px
 		padding: 0 0 5px 20px
 		position: relative
 		text-transform: uppercase
@@ -345,15 +361,16 @@ a
 		&:before
 			border-color: $green $green transparent $green
 	ul, ol
-		@include clearfix
+		+clearfix
 	ul li:before
 		color: $red
 		content: "\2605"
-		display: block
-		font-size: 12px
-		left: -15px
-		position: absolute
-		top: 0
+		display: inline-block
+		font-size: 13px
+		// left: -18px
+		margin-right: 4px
+		position: relative
+		top: -2px
 	ol
 		counter-reset: count
 		li
@@ -361,12 +378,12 @@ a
 			&:before
 				color: $red
 				content: counter(count)"."
-				display: block
+				// display: block
 				font-weight: bold
-				left: -35px
-				position: absolute
+				// left: -35px
+				// position: absolute
 				text-align: right
-				top: 0
+				// top: 0
 				width: 32px
 
 	.book-heading
@@ -390,7 +407,7 @@ a
 			display: none
 		&:before 
 			background: $red url(../img/sprites.png) -380px 0
-			@include background-size(409px 179px)
+			+background-size(409px 179px)
 			border: 5px solid $red
 			content: ""
 			display: block
@@ -400,25 +417,25 @@ a
 			position: absolute
 			top: 50%
 			width: 24px
-			@include border-radius(50%)
+			+border-radius(50%)
 
 	.page-template-resenhas-php & ul li
 		line-height: 20px
 		margin: 5px 0
 		&:before
 			display: none
-	.letters li
+	.page-template-resenhas-php & .letters li
 		float: left
 		margin: 0 5px 10px
 		a
 			background: $grayLt
 			color: #fff
 			display: block
-			font: 900 20px/30px $font
+			font: 400 20px/30px $font
 			text-align: center
 			text-decoration: none
 			width: 30px
-			@include border-radius(5px)
+			+border-radius(5px)
 			&:hover, &:focus, &:active
 				background: $green
 		&:before
@@ -446,7 +463,7 @@ a
 		background: $green
 		color: #fff
 		float: right
-		font: 700 18px/30px $font
+		font: 300 18px/30px $font
 		margin-top: -3px
 		padding: 0 30px
 		text-decoration: inherit
@@ -493,6 +510,7 @@ a
 .book-term,
 .book-info
 	display: table-cell
+	font-family: $font
 	height: 32px
 	padding: 4px 8px
 	vertical-align: middle
@@ -514,6 +532,17 @@ a
 		top: 50%
 .book-info
 	padding-left: 13px
+.book-read-excerpt
+	background: $red
+	color: #fff
+	display: block
+	font: 400 12px/2 $font
+	text-align: center
+	text-decoration: none
+	text-transform: uppercase
+	&:hover, &:focus, &:active
+		background: $green
+		color: #fff
 .book-social
 	font-size: 0
 	text-align: center
@@ -532,7 +561,7 @@ a
 
 .book-review
 	margin-bottom: 10px
-	margin-top: -30px
+	margin-top: -35px
 	position: relative
 .book-aside
 	left: -50px
@@ -545,7 +574,7 @@ a
 			border-top: 1px solid $black
 			height: 50px
 			width: 50px
-			@include border-radius(0)
+			+border-radius(0)
 			&:before
 				font-size: 28px
 				line-height: 50px
@@ -569,6 +598,7 @@ a
 	margin-left: 200px
 	.book-heading
 		border-left: 40px solid $green
+		clear: none
 		margin-bottom: -1px
 	.book-meta
 		margin-left: 40px
@@ -662,11 +692,17 @@ $ratings: l, 10, 12, 14, 16, 18
 	margin-left: auto
 	margin-right: auto
 
+.size-small,
+.size-medium,
+.size-full,
+.alignnone
+	max-width: 630px
 .book-review,
 .size-large
 	height: auto
 	margin-left: -40px
 	margin-right: -40px
+	max-width: none
 	width: 710px
 
 @for $i from 3 through 6
@@ -686,11 +722,69 @@ $ratings: l, 10, 12, 14, 16, 18
 		> li:before
 			display: none
 
+#go-top
+	background: rgba($greenLt,.8)
+	bottom: -60px
+	color: $greenDk
+	display: block
+	font: 300 14px/18px $font
+	height: 50px
+	padding: 32px 0 0
+	position: fixed
+	right: 10px
+	text-align: center
+	text-decoration: none
+	text-transform: uppercase
+	width: 50px
+	z-index: 90
+	+border-radius(5px)
+	+box-sizing
+	&.show
+		bottom: 10px
+	&:before
+		background: url(../img/sprites.png) -135px -291px
+		content: ''
+		display: block
+		height: 28px
+		left: 12px
+		position: absolute
+		top: 4px
+		width: 25px
+	&:hover, &:focus, &:active
+		background: rgba($greenLt,1)
+		color: #000
+		&:before
+			-webkit-animation: myanim .5s infinite alternate ease-out
+			-moz-animation: myanim .5s infinite alternate ease-out
+			-o-animation: myanim .5s infinite alternate ease-out
+			animation: myanim .5s infinite alternate ease-out
+
+@-webkit-keyframes myanim
+	0%
+		margin-top: 0
+	100%
+		margin-top: -8px
+@-moz-keyframes myanim
+	0%
+		margin-top: 0
+	100%
+		margin-top: -8px
+@-o-keyframes myanim
+	0%
+		margin-top: 0
+	100%
+		margin-top: -8px
+@keyframes myanim
+	0%
+		margin-top: 0
+	100%
+		margin-top: -8px
+
 // Single
 
 .post-author
 	background: $greenLt
-	font: 11px/17px $font
+	font: 14px/20px $font
 	margin: -85px 0 30px
 	min-height: 100px
 	padding: 10px 40px 10px 130px
@@ -722,6 +816,9 @@ $ratings: l, 10, 12, 14, 16, 18
 		text-decoration: none
 		&:hover, &:focus, &:active
 			color: $redDk
+	img
+		height: 110px
+		width: 110px
 .related-title
 	font: 12px $font
 
@@ -732,7 +829,7 @@ $ratings: l, 10, 12, 14, 16, 18
 	position: relative
 	width: 710px - $border * 2
 	a
-		background: $red
+		background: $black
 		color: #fff
 		display: table-cell
 		font: 700 12px $font
@@ -742,24 +839,31 @@ $ratings: l, 10, 12, 14, 16, 18
 		text-decoration: none
 		vertical-align: middle
 		width: 50%
-		@include box-sizing
+		+box-sizing
 		&:before
 			border-bottom: 22px solid transparent
-			border-left: $border solid $red
+			border-left: $border solid $black
 			border-top: 22px solid transparent
 			content: ''
 			display: block
 			right: -$border
 			position: absolute
 			top: 0
+			+transition
 		&:first-child
-			background: $black
 			text-align: left
 			&:before
 				border-left: 0 none
 				border-right: $border solid $black
 				left: -$border
 				right: auto
+		&:hover, &:focus, &:active
+			background: $red
+			&:before
+				border-left: $border solid $red
+			&:first-child:before
+				border-left: 0 none
+				border-right: $border solid $red
 
 // Comments
 
@@ -798,6 +902,11 @@ $ratings: l, 10, 12, 14, 16, 18
 		left: -80px
 		position: absolute
 		top: 0
+	.pingback &
+		background: rgba(#fff,.6)
+		margin: 0 0 10px 80px
+		min-height: 0
+		padding: 10px 15px
 .comment-meta,
 .comment-content
 	background: #fff
@@ -824,12 +933,13 @@ $ratings: l, 10, 12, 14, 16, 18
 .comment-content
 	min-height: 42px
 	p
-		line-height: 20px
+		line-height: 24px
 	p,ol,ul
 		margin-bottom: 0
-		padding-bottom: 10px
+		padding-bottom: 15px
 .reply
 	border-top: 3px solid $green
+	line-height: normal
 @mixin button
 	border: 0 none
 	color: #fff
@@ -842,7 +952,7 @@ $ratings: l, 10, 12, 14, 16, 18
 	background: $green
 	display: inline-block
 	text-decoration: none
-	@include button
+	+button
 	&:hover, &:focus, &:active
 		color: #fff
 
@@ -852,8 +962,8 @@ $ratings: l, 10, 12, 14, 16, 18
 	font: 12px $font
 	padding: 4px 6px
 	width: 100%
-	@include border-radius(5px)
-	@include box-sizing
+	+border-radius(5px)
+	+box-sizing
 .comment-form
 	label,
 	.comment-notes,
@@ -866,23 +976,24 @@ $ratings: l, 10, 12, 14, 16, 18
 	margin: 0 0 10px 10px
 	width: 230px
 	input
-		@include field
+		+field
 .comment-form-author
 	margin-left: 0
 .comment-form-comment 
 	margin-bottom: 10px
 	textarea
 		height: 80px
-		@include field
+		+field
 .form-submit
 	border-top: 3px solid $red
+	line-height: normal
 	text-align: right
 	input
 		background: $red
 		border: 0 none
 		cursor: pointer
 		display: inline-block
-		@include button
+		+button
 
 // Contact Form
 
@@ -893,8 +1004,8 @@ $ratings: l, 10, 12, 14, 16, 18
 	font: 12px/1.5 $font
 	padding: 6px 8px
 	width: 100%
-	@include border-radius(5px)
-	@include box-sizing
+	+border-radius(5px)
+	+box-sizing
 
 .field
 	label, br
@@ -907,11 +1018,12 @@ $ratings: l, 10, 12, 14, 16, 18
 	width: 49.4%
 .field-submit
 	border-top: 3px solid $red
+	line-height: normal
 	text-align: right
 .submit
 	background: $red
 	display: inline-block
-	@include button
+	+button
 
 .ajax-loader
 	float: left
@@ -920,16 +1032,24 @@ $ratings: l, 10, 12, 14, 16, 18
 // Widgets
 
 .widget
+	border-bottom: 2px solid #ddd
 	clear: both
+	margin-bottom: 5px
+	padding-bottom: 5px
+	width: 230px
 .widget-title
 	border-bottom: 2px solid $red
 	color: $greenDk
-	font: 300 16px/20px $font
+	font: 400 18px/24px $font
 	padding: 10px 10px 0
 	text-transform: uppercase
 
 .widget_search
+	border: 0 none
 	margin: -85px 0 0
+	padding: 0
+	p
+		margin-bottom: 10px
 #s
 	border: 0 none
 	font: italic 12px/1.5 $font
@@ -937,8 +1057,8 @@ $ratings: l, 10, 12, 14, 16, 18
 	padding: 5px
 	text-align: center
 	width: 100%
-	@include appearance(textfield)
-	@include box-sizing
+	+appearance(textfield)
+	+box-sizing
 .s-submit
 	display: none
 
@@ -979,10 +1099,15 @@ $ratings: l, 10, 12, 14, 16, 18
 	background: $green
 
 .textwidget
-	font: 12px/17px $font
-	padding: 7px 10px 0
+	font: 14px/20px $font
+	padding: 10px 10px 0
 	p
-		margin-bottom: 7px
+		margin-bottom: 10px
+	img
+		height: auto
+		max-width: 210px
+	iframe
+		max-width: 210px
 
 .tagcloud
 	font: 300 13px $font
@@ -994,7 +1119,8 @@ $ratings: l, 10, 12, 14, 16, 18
 			color: $red
 			text-decoration: underline
 
-.widget_categories
+.widget_categories,
+.widget_archive
 	ul
 		font: 12px/2 $font
 	li
@@ -1007,13 +1133,20 @@ $ratings: l, 10, 12, 14, 16, 18
 		display: block
 		padding: 0 5px 0 40px
 		text-decoration: none
-		&:hover, &:focus, &:active 
+		&:hover, &:focus, &:active
 			background: $red
 			border-color: $redDk
 			color: #fff
 			+ span
 				border-color: $redDk
 				color: #fff
+	.current-cat a
+		background: $red
+		border-color: $redDk
+		color: #fff
+		+ span
+			border-color: $redDk
+			color: #fff
 	span
 		border-right: 1px solid $green
 		display: block
@@ -1022,11 +1155,62 @@ $ratings: l, 10, 12, 14, 16, 18
 		text-align: center
 		top: 0
 		width: 30px
-		@include transition
+		+transition
+.widget_archive
+	padding-bottom: 25px
+	.toggle-year
+		background: #fff
+		font: 12px/2 $font
+		padding: 0
+		position: relative
+		text-indent: 10px
+		&:before
+			background: $greenLt
+			content: ""
+			display: block
+			height: 24px
+			position: absolute
+			right: 0
+			top: 0
+			width: 24px
+			z-index: 1
+			+transition(background)
+		&:after
+			border-top: 5px solid $green
+			border-right: 3px solid transparent
+			border-left: 3px solid transparent
+			content: ""
+			display: block
+			height: 0
+			position: absolute
+			right: 9px
+			top: 9px
+			width: 0
+			z-index: 2
+			+transition(border-color)
+		&:hover, &:focus, &:active
+			&:before
+				background: #fff
+			&:after
+				border-top-color: $redDk
+		&.toggled
+			&:after
+				border: 0 none
+				border-bottom: 5px solid $green
+				border-right: 3px solid transparent
+				border-left: 3px solid transparent
+			&:hover, &:focus, &:active
+				&:after
+					border-bottom-color: $redDk
+		+ ul
+			margin-bottom: 0
+	ul.collapsed
+		display: none
 
 .widget_recent_entries
 	ul
-		font: 10px/12px $font
+		font: 12px/25px $font
+		width: 230px
 	li
 		margin: 0
 		position: relative
@@ -1045,8 +1229,11 @@ $ratings: l, 10, 12, 14, 16, 18
 		display: block
 		margin: 0
 		min-height: 25px
+		overflow: hidden
 		padding: 2px 5px 2px 40px
 		text-decoration: none
+		text-overflow: ellipsis
+		white-space: nowrap
 		&:hover, &:focus, &:active
 			background: $red
 			border-color: $redDk
@@ -1054,12 +1241,17 @@ $ratings: l, 10, 12, 14, 16, 18
 
 .recentcomments
 	border-bottom: 1px solid $green
-	font: 10px/12px $font
+	font: 12px/25px $font
 	margin: 0
 	min-height: 25px
+	overflow: hidden
 	padding: 2px 5px 2px 40px
 	position: relative
-	@include transition(color)
+	text-overflow: ellipsis
+	white-space: nowrap
+	width: 230px
+	+box-sizing
+	+transition(color)
 	&:before,
 	&:after
 		background-image: url(../img/sprites.png)
@@ -1070,7 +1262,7 @@ $ratings: l, 10, 12, 14, 16, 18
 		position: absolute
 		top: 5px
 		width: 26px
-		@include transition(opacity)
+		+transition(opacity)
 	&:before
 		background-position: -687px -90px
 		z-index: 2
@@ -1102,7 +1294,7 @@ $ratings: l, 10, 12, 14, 16, 18
 .more-link,
 .book-review,
 .comment-body
-	@include clearfix
+	+clearfix
 
 // Retina
 
@@ -1122,6 +1314,11 @@ $ratings: l, 10, 12, 14, 16, 18
 	.recentcomments:before,
 	.recentcomments:after,
 	.book-stars:before,
-	.foot:before
+	.foot:before,
+	.go-top:before
 		background-image: url(../img/sprites@2x.png)
-		@include background-size
+		+background-size
+
+// Fancybox
+
+@import "../js/fancybox/jquery.fancybox.css"

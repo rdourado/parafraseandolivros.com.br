@@ -4,6 +4,8 @@
 	<meta charset="UTF-8">
 	<title><?php wp_title() ?></title>
 	<link href="<?php url() ?>/css/screen.css" rel="stylesheet">
+	<link href="<?php url() ?>/favicon.ico" rel="icon" type="image/x-icon">
+	<link href="<?php url() ?>/favicon.ico" rel="shortcut icon" type="image/x-icon">
 	<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"></script><![endif]-->
 	<!-- WP/ --><?php wp_head() ?><!-- /WP -->
 </head>

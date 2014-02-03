@@ -14,17 +14,26 @@ function url() {
 
 // Actions
 
+add_action( 'pre_ping', 'no_self_ping' );
 add_action( 'after_setup_theme', 'my_setup' );
 add_action( 'widgets_init', 'my_widgets_init' );
 add_action( 'wp_enqueue_scripts', 'my_scripts' );
+
+function no_self_ping( &$links ) {
+	$home = get_option( 'home' );
+	foreach ( $links as $l => $link )
+		if ( 0 === strpos( $link, $home ) )
+			unset( $links[$l] );
+}
 
 function my_setup() {
 	// add_editor_style( array( 'css/editor-style.css', twentyfourteen_font_url() ) );
 	add_theme_support( 'automatic-feed-links' );
 
-	// add_theme_support( 'post-thumbnails' );
+	add_theme_support( 'post-thumbnails', array( 'post' ) );
 	// set_post_thumbnail_size( 672, 372, true );
 	add_image_size( 'cover', 200, 300, true );
+	add_image_size( 'related', 220, 220, true );
 
 	register_nav_menus( array(
 		'primary'   => 'Cabeçalho',
@@ -49,20 +58,42 @@ function my_widgets_init() {
 }
 
 function my_scripts() {
-	wp_enqueue_script( 'retina', get_template_directory_uri() . '/js/retina-1.1.0.min.js', array( 'jquery' ), null, true );
+	// jQuery
+	wp_deregister_script( 'jquery' );
+	wp_register_script( 'jquery', 'http://code.jquery.com/jquery-1.10.1.min.js', false, null, true );
+	wp_enqueue_script( 'jquery' );
+
+	// My scripts
+	wp_enqueue_script( 'interface', get_template_directory_uri() . '/js/interface.min.js', array( 'jquery' ), filemtime( TEMPLATEPATH . '/js/interface.min.js' ), true );
 }
 
 // Filters
 
 add_filter( 'the_content', 'my_content' );
 add_filter( 'wp_list_categories', 'my_list_categories' );
+add_filter( 'get_archives_link', 'my_list_categories' );
+add_filter( 'mce_buttons', 'add_more_buttons' );
 
 function my_content( $content ) {
 	return preg_replace( '/<hr.*?>/', '<div class="hr"><hr></div>', $content );
 }
 
 function my_list_categories( $html ) {
-	return preg_replace( '/\((.*?)\)/', '<span>$1</span>', $html );
+	$html = str_replace( '&nbsp;', '', $html );
+	$html = preg_replace( '/\((.*?)\)/', '<span>$1</span>', $html );
+	return $html;
+}
+
+function add_more_buttons( $buttons ) {
+	$buttons[] = 'hr';
+	// $buttons[] = 'del';
+	// $buttons[] = 'sub';
+	// $buttons[] = 'sup';
+	// $buttons[] = 'fontselect';
+	// $buttons[] = 'fontsizeselect';
+	// $buttons[] = 'cleanup';
+	// $buttons[] = 'styleselect';
+	return $buttons;
 }
 
 // My Functions
@@ -70,7 +101,7 @@ function my_list_categories( $html ) {
 function organize_posts( $loop ) {
 	while ( $loop->have_posts() ) : $loop->the_post();
 		global $post;
-		$title = html_entity_decode( trim( get_the_title() ) );
+		$title = html_entity_decode( trim( get_the_title() ), ENT_COMPAT, 'UTF-8' );
 		// Remove “resenha”
 		$title = preg_replace( '/^\[?[Rr]esenha.*?[\]:-]\s/', '', $title );
 		// Coloca artigo do título por último
@@ -78,7 +109,7 @@ function organize_posts( $loop ) {
 		$title = ucfirst( $title );
 		// Salva versão limpa do título
 		$clean = remove_accents( $title );
-		$title = htmlentities( $title );
+		$title = htmlentities( $title, ENT_COMPAT, 'UTF-8' );
 		// Transforma textos entre ‘–’ em itálico
 		$title = preg_replace( '/^(.*?(?=(&ndash;|$)))/', '<b>$1</b>', $title );
 		$title = preg_replace( '/(&ndash;)\s(.*?)\s(&ndash;)/', '&ndash; <i>$2</i> &ndash;', $title );
@@ -105,55 +136,51 @@ function sort2d_bycolumn( $array, $column, $method, $has_header ) {
 function my_grade( $grades ) {
 	$grades = array_filter( $grades );
 	$final_grade = 0;
-	foreach( $grades as $grade ) 
-		$final_grade += $grade;
-	$final_grade /= count( $grades );
+	if ( ! empty( $grades ) ) {
+		foreach( $grades as $index => $grade ) 
+			if ( $grade < 0 )
+				unset( $grades[$index] );
+		foreach( $grades as $grade ) 
+			$final_grade += $grade;
+		$final_grade /= count( $grades );
+	}
 	echo $final_grade;
 }
 
 function my_grade_pct( $grades ) {
 	$grades = array_filter( $grades );
 	$final_grade = 0;
+	foreach( $grades as $index => $grade ) 
+		if ( $grade < 0 )
+			unset( $grades[$index] );
 	foreach( $grades as $grade ) 
 		$final_grade += $grade;
 	$final_grade /= count( $grades );
 	echo (100 * $final_grade / 5) . '%';
 }
 
-/*function make_comparer() {
-    // Normalize criteria up front so that the comparer finds everything tidy
-    $criteria = func_get_args();
-    foreach ($criteria as $index => $criterion) {
-        $criteria[$index] = is_array($criterion)
-            ? array_pad($criterion, 3, null)
-            : array($criterion, SORT_ASC, null);
-    }
+function my_related_posts() {
+	global $post;
 
-    return function($first, $second) use (&$criteria) {
-        foreach ($criteria as $criterion) {
-            // How will we compare this round?
-            list($column, $sortOrder, $projection) = $criterion;
-            $sortOrder = $sortOrder === SORT_DESC ? -1 : 1;
+	$tags = wp_get_post_tags( $post->ID );
+	$tag_ids = array();
 
-            // If a projection was defined project the values now
-            if ($projection) {
-                $lhs = call_user_func($projection, $first[$column]);
-                $rhs = call_user_func($projection, $second[$column]);
-            }
-            else {
-                $lhs = $first[$column];
-                $rhs = $second[$column];
-            }
+	foreach ( $tags as $individual_tag ) 
+		$tag_ids[] = $individual_tag->term_id;
 
-            // Do the actual comparison; do not return if equal
-            if ($lhs < $rhs) {
-                return -1 * $sortOrder;
-            }
-            else if ($lhs > $rhs) {
-                return 1 * $sortOrder;
-            }
-        }
+	$args = array(
+		'tag__in' => $tag_ids,
+		'post__not_in' => array( $post->ID ),
+		'posts_per_page' => 6,
+		'caller_get_posts' => 1
+	);
 
-        return 0; // tiebreakers exhausted, so $first == $second
-    };
-}*/
+	return new WP_Query( $args );
+}
+
+// Share This
+
+add_action( 'wp_head', 'remove_st', 11 );
+function remove_st() {
+	remove_filter( 'the_content', 'st_add_widget' );
+}
