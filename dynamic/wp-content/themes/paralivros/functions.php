@@ -73,6 +73,7 @@ add_filter( 'the_content', 'my_content' );
 add_filter( 'wp_list_categories', 'my_list_categories' );
 add_filter( 'get_archives_link', 'my_list_categories' );
 add_filter( 'mce_buttons', 'add_more_buttons' );
+add_filter( 'the_content_feed', 'my_content_feed' );
 
 function my_content( $content ) {
 	return preg_replace( '/<hr.*?>/', '<div class="hr"><hr></div>', $content );
@@ -94,6 +95,21 @@ function add_more_buttons( $buttons ) {
 	// $buttons[] = 'cleanup';
 	// $buttons[] = 'styleselect';
 	return $buttons;
+}
+
+function my_content_feed( $content ) {
+	if ( in_category( 'lancamentos' ) ) {
+		ob_start();
+		get_template_part( 'acf', 'lancamentos' );
+		$output = ob_get_clean();
+		return $content . $output;
+	} else if ( in_category( 'resenha' ) ) {
+		ob_start();
+		get_template_part( 'acf', 'resenha' );
+		$output = ob_get_clean();
+		return $output . $content;
+	}
+	return $content;
 }
 
 // My Functions
