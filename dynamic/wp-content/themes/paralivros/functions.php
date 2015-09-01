@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 function home() {
 	echo home_url( '/' );
@@ -139,10 +139,10 @@ function organize_posts( $loop ) {
 }
 
 function sort2d_bycolumn( $array, $column, $method, $has_header ) {
-	if ( $has_header ) 
+	if ( $has_header )
 		$header = array_shift( $array );
-	foreach ( $array as $key => $row ) 
-		$narray[$key] = $row[$column]; 
+	foreach ( $array as $key => $row )
+		$narray[$key] = $row[$column];
 	array_multisort( $narray, $method, $array );
 	if ( $has_header )
 		array_unshift( $array, $header );
@@ -150,13 +150,13 @@ function sort2d_bycolumn( $array, $column, $method, $has_header ) {
 }
 
 function my_grade( $grades ) {
-	$grades = array_filter( $grades );
+	$grades = array_filter( $grades, 'strlen' );
 	$final_grade = 0;
 	if ( ! empty( $grades ) ) {
-		foreach( $grades as $index => $grade ) 
+		foreach( $grades as $index => $grade )
 			if ( $grade < 0 )
 				unset( $grades[$index] );
-		foreach( $grades as $grade ) 
+		foreach( $grades as $grade )
 			$final_grade += $grade;
 		$final_grade /= count( $grades );
 	}
@@ -164,12 +164,12 @@ function my_grade( $grades ) {
 }
 
 function my_grade_pct( $grades ) {
-	$grades = array_filter( $grades );
+	$grades = array_filter( $grades, 'strlen' );
 	$final_grade = 0;
-	foreach( $grades as $index => $grade ) 
+	foreach( $grades as $index => $grade )
 		if ( $grade < 0 )
 			unset( $grades[$index] );
-	foreach( $grades as $grade ) 
+	foreach( $grades as $grade )
 		$final_grade += $grade;
 	$final_grade /= count( $grades );
 	echo (100 * $final_grade / 5) . '%';
@@ -181,7 +181,7 @@ function my_related_posts() {
 	$tags = wp_get_post_tags( $post->ID );
 	$tag_ids = array();
 
-	foreach ( $tags as $individual_tag ) 
+	foreach ( $tags as $individual_tag )
 		$tag_ids[] = $individual_tag->term_id;
 
 	$args = array(
